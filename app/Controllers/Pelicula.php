@@ -11,7 +11,12 @@ class Pelicula extends BaseController
 
     public function index()
     {
-        echo "<h1>Hola Mundo</h1>";
+
+        $data = [
+            'nombreVariableVista' => "Contenido"
+        ];
+
+        echo view("index", $data);
     }
 
     public function create()
