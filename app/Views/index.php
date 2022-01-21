@@ -12,9 +12,17 @@
     <p>Cuerpo de la página</p>
 
     <h3><?php echo date("Y-m-d H:i:s") ?></h3>
-    <h3><?= date("Y-m-d H:i:s") ?></h3>
+    <!-- <h3><?= date("Y-m-d H:i:s") ?></h3> -->
 
     <h3><?= $nombreVariableVista ?></h3>
+
+    <ul>
+        <?php foreach ($miArray as $key => $e) : ?>
+            <li>
+                <?= $e ?>
+            </li>
+        <?php endforeach ?>
+    </ul>
 </body>
 
 </html>
