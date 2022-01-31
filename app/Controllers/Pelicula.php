@@ -20,7 +20,11 @@ class Pelicula extends BaseController
 
     public function new()
     {
-        echo view("pelicula/new");
+        $data = [
+            'pelicula' => ['titulo' => '', 'descripcion' => ''],
+        ];
+
+        echo view("pelicula/new", $data);
     }
 
     public function index()
@@ -44,10 +48,14 @@ class Pelicula extends BaseController
             'descripcion' => $this->request->getPost('descripcion')
         ]);
 
-        echo view("pelicula/new");
+        $data = [
+            'pelicula' => ['titulo' => '', 'descripcion' => ''],
+        ];
+
+        echo view("pelicula/new", $data);
     }
 
-    public function edit($id = null)
+    public function edit($id)
     {
         $peliculaModel = new PeliculaModel();
 
@@ -58,7 +66,7 @@ class Pelicula extends BaseController
         echo view("pelicula/edit", $data);
     }
 
-    public function update($id = null)
+    public function update($id)
     {
         $peliculaModel = new PeliculaModel();
 
@@ -74,7 +82,7 @@ class Pelicula extends BaseController
         echo view("pelicula/edit", $data);
     }
 
-    public function delete($id = null)
+    public function delete($id)
     {
         $peliculaModel = new PeliculaModel();
         $peliculaModel->delete($id);

@@ -53,6 +53,7 @@ $routes->delete('pelicula/(:num)','Pelicula::update/$1');
 
 
 $routes->presenter('pelicula');
+$routes->presenter('categoria');
 
 /*
  * --------------------------------------------------------------------

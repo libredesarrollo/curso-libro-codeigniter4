@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peliculas</title>
+    <title>Categoría</title>
 </head>
 
 <body>
-    <h1>Películas</h1>
-    <a href="/pelicula/new">Crear</a>
+    <h1>Categoría</h1>
+    <a href="/categoria/new">Crear</a>
     <table>
         <tr>
             <td>
@@ -19,19 +19,19 @@
                 Opciones
             </td>
         </tr>
-        <?php foreach ($peliculas as $key => $p) : ?>
+        <?php foreach ($categorias as $key => $c) : ?>
             <tr>
                 <td>
-                    <?= $p['titulo'] ?>
+                    <?= $c['titulo'] ?>
                 </td>
                 <td>
-                    <a href="/pelicula/<?= $p['id'] ?>">Ver</a>
+                    <a href="/categoria/<?= $c['id'] ?>">Ver</a>
 
-                    <form action="/pelicula/delete/<?= $p['id'] ?>" method="POST">
+                    <form action="/categoria/delete/<?= $c['id'] ?>" method="POST">
                         <button type="submit">Eliminar</button>
                     </form>
 
-                    <a href="/pelicula/edit/<?= $p['id'] ?>">Editar</a>
+                    <a href="/categoria/edit/<?= $c['id'] ?>">Editar</a>
                 </td>
             </tr>
         <?php endforeach ?>
