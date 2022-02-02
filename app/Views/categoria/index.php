@@ -8,8 +8,11 @@
 </head>
 
 <body>
+
+    <?= view("partials/_session") ?>
+
     <h1>Categoría</h1>
-    <a href="/categoria/new">Crear</a>
+    <a href="/dashboard/categoria/new">Crear</a>
     <table>
         <tr>
             <td>
@@ -25,13 +28,13 @@
                     <?= $c['titulo'] ?>
                 </td>
                 <td>
-                    <a href="/categoria/<?= $c['id'] ?>">Ver</a>
+                    <a href="/dashboard/categoria/<?= $c['id'] ?>">Ver</a>
 
-                    <form action="/categoria/delete/<?= $c['id'] ?>" method="POST">
+                    <form action="/dashboard/categoria/delete/<?= $c['id'] ?>" method="POST">
                         <button type="submit">Eliminar</button>
                     </form>
 
-                    <a href="/categoria/edit/<?= $c['id'] ?>">Editar</a>
+                    <a href="/dashboard/categoria/edit/<?= $c['id'] ?>">Editar</a>
                 </td>
             </tr>
         <?php endforeach ?>

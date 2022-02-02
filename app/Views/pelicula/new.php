@@ -9,8 +9,10 @@
 
 <body>
 
-    <form action="create" method="POST" enctype="multipart/form-data">
-        <?= view("pelicula/_form",['op' => "Crear"]) ?>
+    <?= view("partials/_session") ?>
+
+    <form action="/dashboard/pelicula/create" method="POST" enctype="multipart/form-data">
+        <?= view("pelicula/_form", ['op' => "Crear"]) ?>
     </form>
 </body>
 

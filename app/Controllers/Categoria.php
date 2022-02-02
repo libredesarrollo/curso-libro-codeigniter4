@@ -49,11 +49,7 @@ class Categoria extends BaseController
             'descripcion' => $this->request->getPost('descripcion')
         ]);
 
-        $data = [
-            'categoria' => ['titulo' => ''],
-        ];
-
-        echo view("categoria/new", $data);
+        return redirect()->to('/dashboard/categoria/new')->with('mensaje', 'Registro gestionado de manera exitosa');
     }
 
     public function edit($id)
@@ -76,11 +72,7 @@ class Categoria extends BaseController
             'descripcion' => $this->request->getPost('descripcion')
         ]);
 
-        $data = [
-            'categoria' => $categoriaModel->find($id),
-        ];
-
-        echo view("categoria/edit", $data);
+        return redirect()->to('/dashboard/categoria/edit/'.$id)->with('mensaje', 'Registro gestionado de manera exitosa');
     }
 
     public function delete($id)
@@ -88,6 +80,6 @@ class Categoria extends BaseController
         $categoriaModel = new CategoriaModel();
         $categoriaModel->delete($id);
 
-        echo "Categoria eliminada";
+        return redirect()->to('/dashboard/categoria')->with('mensaje', 'Registro gestionado de manera exitosa');
     }
 }

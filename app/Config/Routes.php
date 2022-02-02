@@ -34,27 +34,31 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-//crear
-$routes->get('pelicula/new','Pelicula::new');
-$routes->post('pelicula/create','Pelicula::create');
+// //crear
+$routes->get('pelicula/new', 'Pelicula::new', ['as' => 'pelicula.new']);
+// $routes->post('pelicula/create', 'Pelicula::create');
 
-// ver
-$routes->get('pelicula','Pelicula::index');
-$routes->get('pelicula/(:num)','Pelicula::show/$1');
+// // ver
+// $routes->get('pelicula', 'Pelicula::index');
+// $routes->get('pelicula/(:num)', 'Pelicula::show/$1');
 
-// actualizar
-$routes->get('pelicula/(:num)/edit','Pelicula::edit/$1');
-$routes->post('pelicula/update/(:num)','Pelicula::update/$1');
-//$routes->put('pelicula/(:num)','Pelicula::update/$1');
+// // actualizar
+// $routes->get('pelicula/(:num)/edit', 'Pelicula::edit/$1');
+// $routes->post('pelicula/update/(:num)', 'Pelicula::update/$1');
+// //$routes->put('pelicula/(:num)','Pelicula::update/$1');
 
-// eliminar
-$routes->post('pelicula/delete/(:num)','Pelicula::delete/$1');
-$routes->delete('pelicula/(:num)','Pelicula::update/$1');
+// // eliminar
+// $routes->post('pelicula/delete/(:num)', 'Pelicula::delete/$1');
+// $routes->delete('pelicula/(:num)', 'Pelicula::update/$1');
 
+//['namespace' => 'App\Controllers']
 
-$routes->presenter('pelicula');
-$routes->presenter('categoria');
+$routes->group('dashboard', function ($routes) {
+    $routes->presenter('pelicula');
+    $routes->presenter('categoria');
+});
 
+//$routes->presenter('/dashboard/categoria', ['controller' =>'\App\Controllers\Categoria']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

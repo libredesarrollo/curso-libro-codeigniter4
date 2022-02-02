@@ -48,11 +48,7 @@ class Pelicula extends BaseController
             'descripcion' => $this->request->getPost('descripcion')
         ]);
 
-        $data = [
-            'pelicula' => ['titulo' => '', 'descripcion' => ''],
-        ];
-
-        echo view("pelicula/new", $data);
+        return redirect()->to('/dashboard/pelicula/new')->with('mensaje', 'Registro gestionado de manera exitosa');
     }
 
     public function edit($id)
@@ -75,11 +71,7 @@ class Pelicula extends BaseController
             'descripcion' => $this->request->getPost('descripcion')
         ]);
 
-        $data = [
-            'pelicula' => $peliculaModel->find($id),
-        ];
-
-        echo view("pelicula/edit", $data);
+        return redirect()->to('/dashboard/pelicula/edit/' . $id)->with('mensaje', 'Registro gestionado de manera exitosa');
     }
 
     public function delete($id)
@@ -87,6 +79,6 @@ class Pelicula extends BaseController
         $peliculaModel = new PeliculaModel();
         $peliculaModel->delete($id);
 
-        echo "Pelicula eliminada";
+        return redirect()->to('/dashboard/pelicula')->with('mensaje', 'Registro gestionado de manera exitosa');
     }
 }

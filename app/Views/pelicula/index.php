@@ -8,8 +8,11 @@
 </head>
 
 <body>
+
+    <?= view("partials/_session") ?>
+
     <h1>Películas</h1>
-    <a href="/pelicula/new">Crear</a>
+    <a href="/dashboard/pelicula/new">Crear</a>
     <table>
         <tr>
             <td>
@@ -25,13 +28,13 @@
                     <?= $p['titulo'] ?>
                 </td>
                 <td>
-                    <a href="/pelicula/<?= $p['id'] ?>">Ver</a>
+                    <a href="/dashboard/pelicula/<?= $p['id'] ?>">Ver</a>
 
-                    <form action="/pelicula/delete/<?= $p['id'] ?>" method="POST">
+                    <form action="/dashboard/pelicula/delete/<?= $p['id'] ?>" method="POST">
                         <button type="submit">Eliminar</button>
                     </form>
 
-                    <a href="/pelicula/edit/<?= $p['id'] ?>">Editar</a>
+                    <a href="/dashboard/pelicula/edit/<?= $p['id'] ?>">Editar</a>
                 </td>
             </tr>
         <?php endforeach ?>

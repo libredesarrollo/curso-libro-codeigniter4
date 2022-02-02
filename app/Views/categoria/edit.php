@@ -8,7 +8,9 @@
 </head>
 
 <body>
-    <form action="/categoria/update/<?= $categoria['id'] ?>" method="POST">
+    <?= view("partials/_session") ?>
+    
+    <form action="/dashboard/categoria/update/<?= $categoria['id'] ?>" method="POST">
         <?= view("categoria/_form", ['op' => "Actualizar"]) ?>
     </form>
 </body>
