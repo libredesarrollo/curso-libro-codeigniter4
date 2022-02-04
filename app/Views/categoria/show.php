@@ -9,9 +9,6 @@
 
 <body>
     <h1><?= $categoria['titulo'] ?></h1>
-
-
-
 </body>
 
 </html>

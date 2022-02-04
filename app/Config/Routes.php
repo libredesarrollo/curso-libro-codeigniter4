@@ -53,7 +53,7 @@ $routes->get('pelicula/new', 'Pelicula::new', ['as' => 'pelicula.new']);
 
 //['namespace' => 'App\Controllers']
 
-$routes->group('dashboard', function ($routes) {
+$routes->group('dashboard',['namespace' =>'\App\Controllers\Dashboard'], function ($routes) {
     $routes->presenter('pelicula');
     $routes->presenter('categoria');
 });
