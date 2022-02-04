@@ -45,10 +45,16 @@ class Categoria extends BaseController
     {
         $categoriaModel = new CategoriaModel();
 
-        $categoriaModel->insert([
-            'titulo' => $this->request->getPost('titulo'),
-            'descripcion' => $this->request->getPost('descripcion')
-        ]);
+        if ($this->validate('categorias')) {
+            $categoriaModel->insert([
+                'titulo' => $this->request->getPost('titulo')
+            ]);
+        } else {
+            session()->setFlashdata([
+                'validation' => $this->validator
+            ]);
+            return redirect()->back()->withInput();
+        }
 
         return redirect()->to('/dashboard/categoria/new')->with('mensaje', 'Registro gestionado de manera exitosa');
     }
@@ -68,12 +74,17 @@ class Categoria extends BaseController
     {
         $categoriaModel = new CategoriaModel();
 
-        $categoriaModel->update($id, [
-            'titulo' => $this->request->getPost('titulo'),
-            'descripcion' => $this->request->getPost('descripcion')
-        ]);
-
-        return redirect()->to('/dashboard/categoria/edit/'.$id)->with('mensaje', 'Registro gestionado de manera exitosa');
+        if ($this->validate('categorias')) {
+            $categoriaModel->update($id, [
+                'titulo' => $this->request->getPost('titulo')
+            ]);
+        } else {
+            session()->setFlashdata([
+                'validation' => $this->validator
+            ]);
+            return redirect()->back()->withInput();
+        }
+        return redirect()->to('/dashboard/categoria/edit/' . $id)->with('mensaje', 'Registro gestionado de manera exitosa');
     }
 
     public function delete($id)
