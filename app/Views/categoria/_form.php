@@ -1,5 +1,6 @@
 <label for="title">Title</label>
-<input type="input" name="titulo" value="<?= $categoria['titulo'] ?>" />
+
+<input type="input" name="titulo" value="<?= old('titulo', $categoria['titulo']) ?>" />
 
 <br>
 
