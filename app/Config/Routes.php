@@ -53,10 +53,21 @@ $routes->get('pelicula/new', 'Pelicula::new', ['as' => 'pelicula.new']);
 
 //['namespace' => 'App\Controllers']
 
-$routes->group('dashboard',['namespace' =>'\App\Controllers\Dashboard'], function ($routes) {
+$routes->group('dashboard', ['namespace' => '\App\Controllers\Dashboard'], function ($routes) {
     $routes->presenter('pelicula');
     $routes->presenter('categoria');
 });
+
+
+$routes->get('login', '\App\Controllers\Web\Usuario::login', ['as' => 'usuario.login']);
+$routes->post('login', '\App\Controllers\Web\Usuario::login_post', ['as' => 'usuario.login.post']);
+$routes->get('registrar', '\App\Controllers\Web\Usuario::registrar', ['as' => 'usuario.registrar']);
+$routes->post('registrar', '\App\Controllers\Web\Usuario::registrar_post', ['as' => 'usuario.registrar.post']);
+
+$routes->get('logout', '\App\Controllers\Web\Usuario::logout', ['as' => 'usuario.logout']);
+
+
+
 
 //$routes->presenter('/dashboard/categoria', ['controller' =>'\App\Controllers\Categoria']);
 /*
