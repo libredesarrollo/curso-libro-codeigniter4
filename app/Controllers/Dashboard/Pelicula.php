@@ -13,7 +13,7 @@ class Pelicula extends BaseController
         $peliculaModel = new PeliculaModel();
 
         $data = [
-            'pelicula' => $peliculaModel->find($id),
+            'pelicula' => $peliculaModel->asObject()->find($id),
         ];
 
         echo view("pelicula/show", $data);
@@ -22,7 +22,7 @@ class Pelicula extends BaseController
     public function new()
     {
         $data = [
-            'pelicula' => ['titulo' => '', 'descripcion' => ''],
+            'pelicula' => new PeliculaModel(),
         ];
 
         echo view("pelicula/new", $data);
@@ -34,7 +34,7 @@ class Pelicula extends BaseController
         $peliculaModel = new PeliculaModel();
 
         $data = [
-            'peliculas' => $peliculaModel->find(),
+            'peliculas' => $peliculaModel->asObject()->find(),
         ];
 
         echo view("pelicula/index", $data);
@@ -45,7 +45,7 @@ class Pelicula extends BaseController
         $peliculaModel = new PeliculaModel();
 
         if ($this->validate('peliculas')) {
-            $peliculaModel->insert([
+            $peliculaModel->asObject()->insert([
                 'titulo' => $this->request->getPost('titulo'),
                 'descripcion' => $this->request->getPost('descripcion')
             ]);
@@ -65,7 +65,7 @@ class Pelicula extends BaseController
         $peliculaModel = new PeliculaModel();
 
         $data = [
-            'pelicula' => $peliculaModel->find($id),
+            'pelicula' => $peliculaModel->asObject()->find($id),
         ];
 
         echo view("pelicula/edit", $data);
@@ -76,7 +76,7 @@ class Pelicula extends BaseController
         $peliculaModel = new PeliculaModel();
 
         if ($this->validate('peliculas')) {
-            $peliculaModel->update($id, [
+            $peliculaModel->asObject()->update($id, [
                 'titulo' => $this->request->getPost('titulo'),
                 'descripcion' => $this->request->getPost('descripcion')
             ]);
@@ -93,7 +93,7 @@ class Pelicula extends BaseController
     public function delete($id)
     {
         $peliculaModel = new PeliculaModel();
-        $peliculaModel->delete($id);
+        $peliculaModel->asObject()->delete($id);
 
         return redirect()->to('/dashboard/pelicula')->with('mensaje', 'Registro gestionado de manera exitosa');
     }

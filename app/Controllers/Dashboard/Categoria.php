@@ -13,7 +13,7 @@ class Categoria extends BaseController
         $categoriaModel = new CategoriaModel();
 
         $data = [
-            'categoria' => $categoriaModel->find($id),
+            'categoria' => $categoriaModel->asObject()->find($id),
         ];
 
         echo view("categoria/show", $data);
@@ -23,7 +23,7 @@ class Categoria extends BaseController
     {
 
         $data = [
-            'categoria' => ['titulo' => ''],
+            'categoria' => new CategoriaModel(),
         ];
 
         echo view("categoria/new", $data);
@@ -35,7 +35,7 @@ class Categoria extends BaseController
         $categoriaModel = new CategoriaModel();
 
         $data = [
-            'categorias' => $categoriaModel->find(),
+            'categorias' => $categoriaModel->asObject()->find(),
         ];
 
         echo view("categoria/index", $data);
@@ -46,7 +46,7 @@ class Categoria extends BaseController
         $categoriaModel = new CategoriaModel();
 
         if ($this->validate('categorias')) {
-            $categoriaModel->insert([
+            $categoriaModel->asObject()->insert([
                 'titulo' => $this->request->getPost('titulo')
             ]);
         } else {
@@ -64,7 +64,7 @@ class Categoria extends BaseController
         $categoriaModel = new CategoriaModel();
 
         $data = [
-            'categoria' => $categoriaModel->find($id),
+            'categoria' => $categoriaModel->asObject()->find($id),
         ];
 
         echo view("categoria/edit", $data);
@@ -75,7 +75,7 @@ class Categoria extends BaseController
         $categoriaModel = new CategoriaModel();
 
         if ($this->validate('categorias')) {
-            $categoriaModel->update($id, [
+            $categoriaModel->asObject()->update($id, [
                 'titulo' => $this->request->getPost('titulo')
             ]);
         } else {
@@ -90,7 +90,7 @@ class Categoria extends BaseController
     public function delete($id)
     {
         $categoriaModel = new CategoriaModel();
-        $categoriaModel->delete($id);
+        $categoriaModel->asObject()->delete($id);
 
         return redirect()->to('/dashboard/categoria')->with('mensaje', 'Registro gestionado de manera exitosa');
     }

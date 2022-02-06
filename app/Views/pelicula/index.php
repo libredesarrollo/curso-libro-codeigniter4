@@ -16,16 +16,16 @@
         <?php foreach ($peliculas as $key => $p) : ?>
             <tr>
                 <td>
-                    <?= $p['titulo'] ?>
+                    <?= $p->titulo ?>
                 </td>
                 <td>
-                    <a href="/dashboard/pelicula/<?= $p['id'] ?>">Ver</a>
+                    <a href="/dashboard/pelicula/<?= $p->id ?>">Ver</a>
 
-                    <form action="/dashboard/pelicula/delete/<?= $p['id'] ?>" method="POST">
+                    <form action="/dashboard/pelicula/delete/<?= $p->id ?>" method="POST">
                         <button type="submit">Eliminar</button>
                     </form>
 
-                    <a href="/dashboard/pelicula/edit/<?= $p['id'] ?>">Editar</a>
+                    <a href="/dashboard/pelicula/edit/<?= $p->id ?>">Editar</a>
                 </td>
             </tr>
         <?php endforeach ?>
