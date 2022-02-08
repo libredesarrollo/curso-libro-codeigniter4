@@ -66,7 +66,10 @@ $routes->post('registrar', '\App\Controllers\Web\Usuario::registrar_post', ['as'
 
 $routes->get('logout', '\App\Controllers\Web\Usuario::logout', ['as' => 'usuario.logout']);
 
-
+// API REST
+$routes->group('api', ['namespace' => '\App\Controllers\Api'], function ($routes) {
+    $routes->resource('pelicula');
+});
 
 
 //$routes->presenter('/dashboard/categoria', ['controller' =>'\App\Controllers\Categoria']);
