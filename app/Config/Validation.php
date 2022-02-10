@@ -46,12 +46,13 @@ class Validation
     ];
     public $peliculas = [
         'titulo' => 'required|min_length[3]|max_length[255]',
-        'descripcion' => 'required|min_length[3]|max_length[2000]'
+        'descripcion' => 'required|min_length[3]|max_length[2000]',
+        'categoria_id' => 'required|is_natural',
     ];
 
-    public $usuarios =[
-		'usuario' => 'required|min_length[3]|max_length[20]|is_unique[usuarios.usuario]',
-		'email' => 'required|min_length[3]|max_length[20]|is_unique[usuarios.email]',
-		'contrasena' => 'required|min_length[5]|max_length[15]'
-	];
+    public $usuarios = [
+        'usuario' => 'required|min_length[3]|max_length[20]|is_unique[usuarios.usuario]',
+        'email' => 'required|min_length[3]|max_length[20]|is_unique[usuarios.email]',
+        'contrasena' => 'required|min_length[5]|max_length[15]'
+    ];
 }

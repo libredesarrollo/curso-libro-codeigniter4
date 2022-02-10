@@ -3,6 +3,7 @@
 namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
+use App\Models\CategoriaModel;
 use App\Models\PeliculaModel;
 
 class Pelicula extends BaseController
@@ -21,8 +22,12 @@ class Pelicula extends BaseController
 
     public function new()
     {
+
+        $categoriaModel = new CategoriaModel();
+
         $data = [
             'pelicula' => new PeliculaModel(),
+            'categorias' => $categoriaModel->asObject()->find()
         ];
 
         echo view("pelicula/new", $data);
@@ -30,11 +35,14 @@ class Pelicula extends BaseController
 
     public function index()
     {
-
         $peliculaModel = new PeliculaModel();
 
         $data = [
-            'peliculas' => $peliculaModel->asObject()->find(),
+            'peliculas' => $peliculaModel
+                ->select("peliculas.*, categorias.titulo as categoria")
+                ->asObject()
+                ->join('categorias', 'categorias.id = peliculas.categoria_id')
+                ->find()
         ];
 
         echo view("pelicula/index", $data);
@@ -47,7 +55,8 @@ class Pelicula extends BaseController
         if ($this->validate('peliculas')) {
             $peliculaModel->asObject()->insert([
                 'titulo' => $this->request->getPost('titulo'),
-                'descripcion' => $this->request->getPost('descripcion')
+                'descripcion' => $this->request->getPost('descripcion'),
+                'categoria_id' => $this->request->getPost('categoria_id')
             ]);
         } else {
             session()->setFlashdata([
@@ -63,9 +72,11 @@ class Pelicula extends BaseController
     public function edit($id)
     {
         $peliculaModel = new PeliculaModel();
+        $categoriaModel = new CategoriaModel();
 
         $data = [
             'pelicula' => $peliculaModel->asObject()->find($id),
+            'categorias' => $categoriaModel->asObject()->find()
         ];
 
         echo view("pelicula/edit", $data);
@@ -78,7 +89,8 @@ class Pelicula extends BaseController
         if ($this->validate('peliculas')) {
             $peliculaModel->asObject()->update($id, [
                 'titulo' => $this->request->getPost('titulo'),
-                'descripcion' => $this->request->getPost('descripcion')
+                'descripcion' => $this->request->getPost('descripcion'),
+                'categoria_id' => $this->request->getPost('categoria_id')
             ]);
         } else {
             session()->setFlashdata([

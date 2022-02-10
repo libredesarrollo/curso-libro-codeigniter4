@@ -8,4 +8,12 @@
 
 <br>
 
+<label for="categoria_id">Categoría</label>
+<select name="categoria_id" id="categoria_id">
+    <option value=""></option>
+    <?php foreach ($categorias as $c) : ?>
+        <option <?= $pelicula->categoria_id !== $c->id ?: "selected" ?> value="<?= $c->id ?>"><?= $c->titulo ?> </option>
+    <?php endforeach ?>
+</select>
+
 <button type="submit"><?= $op ?></button>

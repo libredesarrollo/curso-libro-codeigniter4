@@ -8,7 +8,7 @@ class PeliculaSeeder extends Seeder
 {
     public function run()
     {
-        $this->db->table('peliculas')->where('id >', 1)->delete();
+        $this->db->table('peliculas')->where('id >=', 1)->delete();
 
         for ($i = 1; $i <= 20; $i++) {
             $data = [

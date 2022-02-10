@@ -7,7 +7,10 @@
     <table>
         <tr>
             <td>
-                Titulo
+                Título
+            </td>
+            <td>
+                Categoría
             </td>
             <td>
                 Opciones
@@ -17,6 +20,9 @@
             <tr>
                 <td>
                     <?= $p->titulo ?>
+                </td>
+                <td>
+                    <?= $p->categoria ?>
                 </td>
                 <td>
                     <a href="/dashboard/pelicula/<?= $p->id ?>">Ver</a>
