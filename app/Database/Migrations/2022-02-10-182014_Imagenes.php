@@ -16,7 +16,7 @@ class Imagenes extends Migration
                 'unsigned'       => TRUE,
                 'auto_increment' => TRUE
             ],
-            'titulo'       => [
+            'imagen'       => [
                 'type'           => 'VARCHAR',
                 'constraint'     => '255',
             ],

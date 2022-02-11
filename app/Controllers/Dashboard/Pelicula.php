@@ -4,6 +4,8 @@ namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
 use App\Models\CategoriaModel;
+use App\Models\ImagenModel;
+use App\Models\PeliculaImagenModel;
 use App\Models\PeliculaModel;
 
 class Pelicula extends BaseController
@@ -35,6 +37,8 @@ class Pelicula extends BaseController
 
     public function index()
     {
+        // $this->generar_imagen();
+        $this->asignar_imagen();
         $peliculaModel = new PeliculaModel();
 
         $data = [
@@ -53,7 +57,7 @@ class Pelicula extends BaseController
         $peliculaModel = new PeliculaModel();
 
         if ($this->validate('peliculas')) {
-            $peliculaModel->asObject()->insert([
+            $peliculaModel->insert([
                 'titulo' => $this->request->getPost('titulo'),
                 'descripcion' => $this->request->getPost('descripcion'),
                 'categoria_id' => $this->request->getPost('categoria_id')
@@ -87,7 +91,7 @@ class Pelicula extends BaseController
         $peliculaModel = new PeliculaModel();
 
         if ($this->validate('peliculas')) {
-            $peliculaModel->asObject()->update($id, [
+            $peliculaModel->update($id, [
                 'titulo' => $this->request->getPost('titulo'),
                 'descripcion' => $this->request->getPost('descripcion'),
                 'categoria_id' => $this->request->getPost('categoria_id')
@@ -108,5 +112,23 @@ class Pelicula extends BaseController
         $peliculaModel->asObject()->delete($id);
 
         return redirect()->to('/dashboard/pelicula')->with('mensaje', 'Registro gestionado de manera exitosa');
+    }
+
+    private function generar_imagen(){
+        $imageModel = new ImagenModel();
+        $imageModel->insert([
+            'nombre' => date("Y-m-d H:i:s"),
+            'extension' => 'Pendiente',
+            'data' => 'Pendiente'
+        ]);        
+    }
+
+    private function asignar_imagen(){
+        $peliculaImagenModel = new PeliculaImagenModel();
+
+        $peliculaImagenModel->insert([
+            'pelicula_id' => 1,
+            'imagen_id' => 1,
+        ]); 
     }
 }
