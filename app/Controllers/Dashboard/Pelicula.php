@@ -98,6 +98,9 @@ class Pelicula extends BaseController
                 'descripcion' => $this->request->getPost('descripcion'),
                 'categoria_id' => $this->request->getPost('categoria_id')
             ]);
+
+            return $this->asignar_imagen($id);
+
         } else {
             session()->setFlashdata([
                 'validation' => $this->validator
@@ -126,17 +129,44 @@ class Pelicula extends BaseController
         ]);
     }
 
-    private function asignar_imagen()
+    private function asignar_imagen($peliculaId)
     {
-        $peliculaImagenModel = new PeliculaImagenModel();
 
-        $peliculaImagenModel->insert([
-            'pelicula_id' => 1,
-            'imagen_id' => 1,
-        ]);
-        $peliculaImagenModel->insert([
-            'pelicula_id' => 1,
-            'imagen_id' => 2,
-        ]);
+        if ($imagefile = $this->request->getFile('imagen')) {
+
+            if ($imagefile->isValid() && !$imagefile->hasMoved()) {
+
+                $validated = $this->validate([
+                    'image' => [
+                        'uploaded[imagen]',
+                        'mime_in[imagen,image/jpg,image/jpeg,image/gif,image/png]',
+                        'max_size[imagen,4096]',
+                    ],
+                ]);
+
+                if ($validated) {
+                    echo "Todo OK";
+                    //return true;
+
+                    $imagenNombre = $imagefile->getRandomName();
+                    $imagefile->move(WRITEPATH . 'uploads/peliculas/', $imagenNombre);
+
+                    $imageModel = new ImagenModel();
+                    $imagenId = $imageModel->insert([
+                        'nombre' => $imagenNombre,
+                        'extension' => 'Pendiente',
+                        'data' => 'Pendiente'
+                    ]);
+
+                    $peliculaImagenModel = new PeliculaImagenModel();
+                    $peliculaImagenModel->insert([
+                        'pelicula_id' => $peliculaId,
+                        'imagen_id' => $imagenId,
+                    ]);
+                    return true;
+                }
+                return $this->validator->listErrors();
+            }
+        }
     }
 }

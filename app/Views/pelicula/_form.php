@@ -16,4 +16,9 @@
     <?php endforeach ?>
 </select>
 
+<?php if ($pelicula->id) : ?>
+    <label for="imagen">Imagen</label>
+    <input type="file" name="imagen" />
+<?php endif ?>
+
 <button type="submit"><?= $op ?></button>
