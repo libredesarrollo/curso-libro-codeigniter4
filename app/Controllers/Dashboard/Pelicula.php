@@ -17,7 +17,9 @@ class Pelicula extends BaseController
 
         $data = [
             'pelicula' => $peliculaModel->asObject()->find($id),
+            'imagenes' => $peliculaModel->getImagesById($id)
         ];
+        //var_dump($imagenModel->getPeliculasById(1));
 
         echo view("pelicula/show", $data);
     }
@@ -38,7 +40,7 @@ class Pelicula extends BaseController
     public function index()
     {
         // $this->generar_imagen();
-        $this->asignar_imagen();
+        // $this->asignar_imagen();
         $peliculaModel = new PeliculaModel();
 
         $data = [
@@ -114,21 +116,27 @@ class Pelicula extends BaseController
         return redirect()->to('/dashboard/pelicula')->with('mensaje', 'Registro gestionado de manera exitosa');
     }
 
-    private function generar_imagen(){
+    private function generar_imagen()
+    {
         $imageModel = new ImagenModel();
         $imageModel->insert([
             'nombre' => date("Y-m-d H:i:s"),
             'extension' => 'Pendiente',
             'data' => 'Pendiente'
-        ]);        
+        ]);
     }
 
-    private function asignar_imagen(){
+    private function asignar_imagen()
+    {
         $peliculaImagenModel = new PeliculaImagenModel();
 
         $peliculaImagenModel->insert([
             'pelicula_id' => 1,
             'imagen_id' => 1,
-        ]); 
+        ]);
+        $peliculaImagenModel->insert([
+            'pelicula_id' => 1,
+            'imagen_id' => 2,
+        ]);
     }
 }

@@ -5,4 +5,9 @@
 
 <p><?= $pelicula->descripcion ?></p>
 
+<ul>
+    <?php foreach ($imagenes as $i) : ?>
+        <li><?= $i->nombre ?></li>
+    <?php endforeach ?>
+</ul>
 <?= $this->endSection() ?>
