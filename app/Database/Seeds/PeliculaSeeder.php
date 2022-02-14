@@ -14,6 +14,7 @@ class PeliculaSeeder extends Seeder
             $data = [
                 'titulo' => "Pelicula $i",
                 'descripcion' => "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum quasi iusto voluptate...",
+                'categoria_id' => 1
             ];
             $this->db->table('peliculas')->insert($data);
         }

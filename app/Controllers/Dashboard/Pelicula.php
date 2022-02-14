@@ -48,7 +48,9 @@ class Pelicula extends BaseController
                 ->select("peliculas.*, categorias.titulo as categoria")
                 ->asObject()
                 ->join('categorias', 'categorias.id = peliculas.categoria_id')
-                ->find()
+                //->find()
+                ->paginate(5),
+            'pager' => $peliculaModel->pager
         ];
 
         echo view("pelicula/index", $data);
@@ -99,8 +101,7 @@ class Pelicula extends BaseController
                 'categoria_id' => $this->request->getPost('categoria_id')
             ]);
 
-            return $this->asignar_imagen($id);
-
+            $this->asignar_imagen($id);
         } else {
             session()->setFlashdata([
                 'validation' => $this->validator
@@ -132,6 +133,8 @@ class Pelicula extends BaseController
     private function asignar_imagen($peliculaId)
     {
 
+        helper('filesystem');
+
         if ($imagefile = $this->request->getFile('imagen')) {
 
             if ($imagefile->isValid() && !$imagefile->hasMoved()) {
@@ -145,17 +148,18 @@ class Pelicula extends BaseController
                 ]);
 
                 if ($validated) {
-                    echo "Todo OK";
-                    //return true;
 
                     $imagenNombre = $imagefile->getRandomName();
-                    $imagefile->move(WRITEPATH . 'uploads/peliculas/', $imagenNombre);
+                    $ext = $imagefile->guessExtension();
+                    //$imagefile->move(WRITEPATH . 'uploads/peliculas/', $imagenNombre);
+                    $imagefile->move('../public/uploads/peliculas/', $imagenNombre);
 
+                    //var_dump(json_encode(get_file_info(WRITEPATH . 'uploads/peliculas/' . $imagenNombre)));
                     $imageModel = new ImagenModel();
                     $imagenId = $imageModel->insert([
                         'nombre' => $imagenNombre,
-                        'extension' => 'Pendiente',
-                        'data' => 'Pendiente'
+                        'extension' => $ext,
+                        'data' => json_encode(get_file_info(WRITEPATH . 'uploads/peliculas/' . $imagenNombre))
                     ]);
 
                     $peliculaImagenModel = new PeliculaImagenModel();
