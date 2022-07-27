@@ -71,6 +71,10 @@ $routes->group('api', ['namespace' => '\App\Controllers\Api'], function ($routes
     $routes->resource('pelicula');
 });
 
+// $routes->group('paypal', function ($routes) {
+    $routes->get('paypal/pay', '\App\Controllers\PayPal\PaymentPaypal::getAccessToken');
+// });
+
 
 //$routes->presenter('/dashboard/categoria', ['controller' =>'\App\Controllers\Categoria']);
 /*
