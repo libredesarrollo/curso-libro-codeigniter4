@@ -72,50 +72,76 @@ class PaymentPaypal extends BaseController
 
     public function getAccessToken()
     {
-
         // try {
 
+        //     $client = \Config\Services::curlrequest();
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->baseURL . "v1/oauth2/token");
-        /*curl_setopt($ch, CURLOPT_URL, “https://api.paypal.com/v1/oauth2/token”);*/
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERPWD, $this->clientId . ":" . $this->secret);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "grant_type=client_credentials");
-        $result = curl_exec($ch);
-
-
-
-        if (empty($result)) die("Error: No response...");
-        else {
-            $json = json_decode($result);
-            /*print_r($json->access_token);*/
-            $accessToken = $json->access_token;
-        }
-
-        return;
-
-        // $client = \Config\Services::curlrequest();
-
-        // $response = $client->request('POST', $this->baseURL . "/v1/oauth2/token", [
-        //     'headers' => [
-        //         'Content-Type'     => 'x-www-form-urlencoded',
-        //         'Accept'     => 'application/json'
-        //     ],
-        //     'auth' => [$this->clientId, $this->secret],
-        //     'body' => [
-        //         'grant_type' => 'client_credentials',
-        //     ]
-        // ]);
+        //     $response = $client->request('GET',"https://www.google.com/", [
+        //         'headers' => [
+        //             'Content-Type'     => 'x-www-form-urlencoded',
+        //             'Accept'     => 'application/json'
+        //         ],
+        //         'auth' => [$this->clientId, $this->secret],
+        //         'body' => [
+        //             'grant_type' => 'client_credentials',
+        //         ]
+        //     ]);
         // } catch (Exception $e) {
 
         //     return  $e->getMessage();
         // }
 
+        // var_dump($response);
 
+        // return;
+
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, $this->baseURL . "v1/oauth2/token");
+        // /*curl_setopt($ch, CURLOPT_URL, “https://api.paypal.com/v1/oauth2/token”);*/
+        // curl_setopt($ch, CURLOPT_HEADER, false);
+        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        // curl_setopt($ch, CURLOPT_POST, true);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_USERPWD, $this->clientId . ":" . $this->secret);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, "grant_type=client_credentials");
+        // $result = curl_exec($ch);
+
+
+
+        // if (empty($result)) die("Error: No response...");
+        // else {
+        //     $json = json_decode($result);
+        //     /*print_r($json->access_token);*/
+        //     $accessToken = $json->access_token;
+        // }
+
+        // return;
+
+        try {
+            $client = \Config\Services::curlrequest();
+
+            $response = $client->request('POST', $this->baseURL . "/v1/oauth2/token", [
+                'headers' => [
+                    //'Content-Type'     => 'x-www-form-urlencoded',
+                    'Accept'     => 'application/json'
+                ],
+                'auth' => [$this->clientId, $this->secret],
+
+                'form_params' => [
+                    'grant_type' => 'client_credentials',
+                    'baz' => ['hi', 'there'],
+                ],
+
+                // 'body' => [
+                    
+                // ]
+            ]);
+        } catch (Exception $e) {
+
+            return  $e->getMessage();
+        }
+
+        var_dump($response);
 
         // function getDeviations(token) {
         //     return new Promise((resolve, reject) => {
