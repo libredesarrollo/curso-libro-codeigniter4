@@ -21,127 +21,77 @@ class PaymentPaypal extends BaseController
     //     $this->secret = env('PAYPAL_SECRET');
     // }
 
-    public function process($orderId)
+    public function index()
     {
+        echo view('shopping/paypal');
+    }
 
+    public function process($orderId = null)
+    {
         try {
+
             $accessToken = $this->getAccessToken();
 
-            $client = \Config\Services::curlrequest();
 
-            $response = $client->request('POST', "/v2/checkout/orders/$orderId/capture", [
-                'headers' => [
-                    'Content-Type'     => 'application/json',
-                    'Accept'     => 'application/json'
-                ],
-                'body' => [
-                    'application_context' => [
-                        'return_url' => "https://www.desarrollolibre.net/academia",
-                        'cancel_url' => "https://www.desarrollolibre.net/cancel"
-                    ]
-                ]
-            ]);
+            $curl = curl_init($this->baseURL . "/v2/checkout/orders/$orderId/capture");
 
-            // $response = Http::acceptJson()->withToken($accessToken)->withHeaders([
-            //     'Content-Type' => 'application/json'
-            // ])
-            //     // withHeaders([ //asForm()
-            //     // 'Accept' => 'application/json',
-            //     // 'Content-Type' => 'application/json',
-            //     // 'Authorization' => "Bearer $accessToken"
-            //     // 
-            //     ->post($this->baseURL . "/v2/checkout/orders/$orderId/capture", [
-            //         'application_context' => [
-            //             'return_url' => "https://www.desarrollolibre.net/academia",
-            //             'cancel_url' => "https://www.desarrollolibre.net/cancel"
-            //         ]
-            //     ])->json();
+            curl_setopt_array($curl, array(
+                //   CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer ' . $accessToken,
+                    'Content-Type: application/json'
+                )
+            ));
 
-            if ($response['status'] == 'COMPLETED') {
+             curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);
 
-                echo $response['status'];
-                return;
+            $resp = json_decode(curl_exec($curl));
+
+            curl_close($curl);
+            if ($resp) {
+            
+                if ($resp->status == 'COMPLETED') {
+                    return $this->response->setJSON(array('msj' => 'Pago exitoso'));
+                }
+                return json_encode(array('msj' => 'Pago no exitoso'));
+
+                // echo "OK!";
+                var_dump($resp);
+                // var_dump($resp->status);
             }
         } catch (Exception $e) {
-            echo $e->getMessage();
-            return  $e->getMessage();
+            return $e->getMessage();
         }
-        echo "Ha ocurrido un problema con su orden, el estatus es " . $response['status'] . " y el ID es " . $response['id'];
-        return  "Ha ocurrido un problema con su orden, el estatus es " . $response['status'] . " y el ID es " . $response['id'];
     }
 
     public function getAccessToken()
     {
-        // try {
-
-        //     $client = \Config\Services::curlrequest();
-
-        //     $response = $client->request('GET',"https://www.google.com/", [
-        //         'headers' => [
-        //             'Content-Type'     => 'x-www-form-urlencoded',
-        //             'Accept'     => 'application/json'
-        //         ],
-        //         'auth' => [$this->clientId, $this->secret],
-        //         'body' => [
-        //             'grant_type' => 'client_credentials',
-        //         ]
-        //     ]);
-        // } catch (Exception $e) {
-
-        //     return  $e->getMessage();
-        // }
-
-        // var_dump($response);
-
-        // return;
-
-        // $ch = curl_init();
-        // curl_setopt($ch, CURLOPT_URL, $this->baseURL . "v1/oauth2/token");
-        // /*curl_setopt($ch, CURLOPT_URL, “https://api.paypal.com/v1/oauth2/token”);*/
-        // curl_setopt($ch, CURLOPT_HEADER, false);
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        // curl_setopt($ch, CURLOPT_POST, true);
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_USERPWD, $this->clientId . ":" . $this->secret);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, "grant_type=client_credentials");
-        // $result = curl_exec($ch);
-
-
-
-        // if (empty($result)) die("Error: No response...");
-        // else {
-        //     $json = json_decode($result);
-        //     /*print_r($json->access_token);*/
-        //     $accessToken = $json->access_token;
-        // }
-
-        // return;
 
         try {
             $client = \Config\Services::curlrequest();
 
             $response = $client->request('POST', $this->baseURL . "/v1/oauth2/token", [
                 'headers' => [
-                    //'Content-Type'     => 'x-www-form-urlencoded',
-                    'Accept'     => 'application/json'
+                    // 'Content-Type'     => 'x-www-form-urlencoded',
+                    // 'Accept'     => 'application/json'
                 ],
                 'auth' => [$this->clientId, $this->secret],
 
                 'form_params' => [
                     'grant_type' => 'client_credentials',
-                    'baz' => ['hi', 'there'],
                 ],
-
-                // 'body' => [
-                    
-                // ]
             ]);
-        } catch (Exception $e) {
 
+            $resJson = json_decode($response->getBody());
+            //var_dump($resJson->access_token);
+            return $resJson->access_token;
+        } catch (Exception $e) {
+            echo "TOKEN";
             return  $e->getMessage();
         }
 
-        var_dump($response);
+
 
         // function getDeviations(token) {
         //     return new Promise((resolve, reject) => {

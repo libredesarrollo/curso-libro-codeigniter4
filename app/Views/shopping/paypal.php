@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&components=YOUR_COMPONENTS"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AUu2CpCBrva4gbNjqB5IvdV16V93hPLgumgyL7iJgQPs64Rdrp35EepAGDE8GtDlZIwg7i44FrGDY8Eq"></script>
 
-    <title>Document</title>
+    <title>PayPal</title>
 
 
 </head>
@@ -19,26 +19,27 @@
     <script>
         function setPaypal() {
             document.querySelector("#paypalCard").innerHTML = "";
-            let paypal;
-            try {
-                paypal = await loadScript({
-                    "client-id": window.Laravel.clientPaypal,
-                });
-            } catch (error) {
-                console.error("failed to load the PayPal JS SDK script", error);
-            }
-
+            // var paypal;
+            // try {
+            //     paypal = loadScript({
+            //         "client-id": "AUu2CpCBrva4gbNjqB5IvdV16V93hPLgumgyL7iJgQPs64Rdrp35EepAGDE8GtDlZIwg7i44FrGDY8Eq",
+            //     });
+            // } catch (error) {
+            //     console.error("failed to load the PayPal JS SDK script", error);
+            // }
+            console.log("ssss")
             if (paypal) {
+                console.log("ssss")
                 try {
-                    await paypal
+                    paypal
                         .Buttons({
                             createOrder: function(data, actions) {
                                 // This function sets up the details of the transaction, including the amount and line item details.
                                 return actions.order.create({
                                     purchase_units: [{
-                                        description: this.course.title,
+                                        description: "Super Course",
                                         amount: {
-                                            value: this.price,
+                                            value: 30.0,
                                         },
                                     }, ],
                                     application_context: {
@@ -47,14 +48,16 @@
                                 });
                             }.bind(this),
                             onApprove: function(data, actions) {
-                                this.$router.replace({
-                                    name: "inscribe-success",
-                                    params: {
-                                        slug: this.$route.params.slug,
-                                        orden: data.orderID,
-                                        coupon: this.coupon,
-                                    },
-                                });
+                                console.log("Order Created! " + data.orderID)
+
+                                fetch('/paypal/process/' + data.orderID, {
+                                        method: 'POST', // or 'PUT'
+                                    }).then(res => res.json())
+                                    .then(response => {
+                                        console.log('Success:', response)
+                                        console.log('Success:', response.status)
+                                    });
+
                             }.bind(this),
                         })
                         .render("#paypalCard");
@@ -63,6 +66,7 @@
                 }
             }
         }
+        setPaypal();
     </script>
 
 </body>

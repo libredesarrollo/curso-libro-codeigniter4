@@ -56,7 +56,7 @@ $routes->get('pelicula/new', 'Pelicula::new', ['as' => 'pelicula.new']);
 $routes->group('dashboard', ['namespace' => '\App\Controllers\Dashboard'], function ($routes) {
     $routes->presenter('pelicula');
     $routes->presenter('categoria');
-});
+}); //3UH25970119751840
 
 
 $routes->get('login', '\App\Controllers\Web\Usuario::login', ['as' => 'usuario.login']);
@@ -71,9 +71,10 @@ $routes->group('api', ['namespace' => '\App\Controllers\Api'], function ($routes
     $routes->resource('pelicula');
 });
 
-// $routes->group('paypal', function ($routes) {
-    $routes->get('paypal/pay', '\App\Controllers\PayPal\PaymentPaypal::getAccessToken');
-// });
+$routes->group('paypal', function ($routes) {
+    $routes->post('process/(:alphanum)', '\App\Controllers\PayPal\PaymentPaypal::process/$1', ['as' => 'paypal-process']);
+    $routes->get('', '\App\Controllers\PayPal\PaymentPaypal::index');
+});
 
 
 //$routes->presenter('/dashboard/categoria', ['controller' =>'\App\Controllers\Categoria']);
