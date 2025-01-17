@@ -8,7 +8,7 @@ class TodosSeeder extends Seeder
 {
     public function run()
     {
-        $this->call('PeliculaSeeder');
         $this->call('CategoriaSeeder');
+        $this->call('PeliculaSeeder');
     }
 }

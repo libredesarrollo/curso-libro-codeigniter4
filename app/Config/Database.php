@@ -26,11 +26,10 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        // 'hostname'     => 'localhost',
         'hostname'     => '127.0.0.1',
         'username'     => 'root',
         'password'     => '',
-        'database'     => 'codeigniter4',
+        'database'     => 'code4movie',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,
