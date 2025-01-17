@@ -14,6 +14,7 @@ class Database extends Config
      */
     public string $filesPath = APPPATH . 'Database' . DIRECTORY_SEPARATOR;
 
+    
     /**
      * Lets you choose which connection group to use if no other is specified.
      */
