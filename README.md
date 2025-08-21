@@ -1,68 +1,72 @@
-# CodeIgniter 4 Application Starter
+#  Curso y Libro: Primeros Pasos con CodeIgniter 4
 
-## What is CodeIgniter?
+Este repositorio acompaña al libro **"Primeros pasos con CodeIgniter 4"** de Andrés Cruz Yoris (DesarrolloLibre), ideal para quienes desean aprender el framework desde cero y con un enfoque práctico.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+https://www.desarrollolibre.net/blog/codeigniter/curso-codeigniter-4
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+https://www.desarrollolibre.net/libros/primeros-pasos-codeigniter-4
+https://www.desarrollolibre.net/libros/first-steps-with-codeigniter-4
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+---
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+##  Acerca del Libro
 
-## Installation & updates
+Este libro/curso está diseñado para cualquier desarrollador que desee construir sus primeras aplicaciones con CodeIgniter 4 mediante una introducción paso a paso y centrada en la práctica :contentReference[oaicite:0]{index=0}.
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+Está dirigido a personas con conocimientos previos en PHP y tecnologías asociadas como HTML, CSS y JavaScript, y que busquen profundizar en un framework con documentación limitada en español :contentReference[oaicite:2]{index=2}.
 
-## Setup
+---
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+##  Contenido y Estructura del Libro (21 Capítulos)
 
-## Important Change with index.php
+1. Entorno necesario para desarrollar en CodeIgniter 4 (instalación, configuración).
+2. Primeros pasos con el framework: sitio oficial, formas de instalación, configuración de la base de datos, migraciones, MVC, rutas y CRUD básico :contentReference[oaicite:3]{index=3}.
+3. Práctica: crea otro CRUD.
+4. Rutas: uso, agrupadas, opciones avanzadas.
+5. Sesiones y mensajes flash.
+6. Vistas reutilizables.
+7. Controladores modulares.
+8. Formularios y validaciones del lado del servidor.
+9. Modelos: propiedades, funciones comunes.
+10. Filtros y módulo de autenticación (login/dashboard protegido).
+11. CRUD tipo REST API (JSON/XML).
+12. Seeders para generar datos de prueba.
+13. Relaciones en base de datos: uno a muchos, muchos a muchos.
+14. Carga de archivos (por ejemplo, imágenes).
+15. Librerías y funciones helper.
+16. Adaptación de componentes Bootstrap 5.
+17. Módulo con listado y detalle para usuario final.
+18. Extensión de API REST con paginación, uploads, métodos adicionales.
+19. Aplicación con Vue (en preparación).
+20. Integración con PayPal para pagos.
+21. Uso de CodeIgniter Shield para autenticación/autoriza­ción, gestión de grupos y permisos :contentReference[oaicite:4]{index=4}.
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Al finalizar, estarás preparado para construir aplicaciones básicas y entender en profundidad cómo funciona CodeIgniter 4 :contentReference[oaicite:5]{index=5}.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+---
 
-**Please** read the user guide for a better explanation of how CI4 works!
+##  Requisitos
 
-## Repository Management
+- Conocimientos previos de PHP, HTML, CSS y JavaScript.
+- Entorno compatible con CodeIgniter 4 (PHP ≥ 7.2, idealmente PHP 8+).
+- Composer para la gestión de dependencias.
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+---
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+##  Instalación del Proyecto
 
-## Server Requirements
+Sigue estos pasos para poner en marcha el proyecto localmente (similar a Laravel):
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+```bash
+git clone https://github.com/libredesarrollo/curso-libro-codeigniter4.git
+cd curso-libro-codeigniter4
+composer install
+cp env .env
+# Ajusta las variables de entorno (.env): base de datos, etc.
+php spark key:generate
+php spark migrate
+php spark db:seed
+php spark serve
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Tambien puedes emplear herramientas como Laragon o Laravel Herd
