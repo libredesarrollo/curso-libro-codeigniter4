@@ -26,7 +26,7 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => '127.0.0.1',
+        'hostname'     => 'mysql.railway.internal',
         'username'     => 'root',
         'password'     => 'ucNplPTvZxdHAnXRefEuEIuXYFcybhOI',
         'database'     => 'railway',
