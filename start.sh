@@ -1,8 +1,7 @@
 #!/bin/bash
-set -e
 
-echo "🔄 Ejecutando migraciones..."
-php spark migrate --all --force
+# Arranca PHP-FPM
+php-fpm &
 
-echo "🚀 Iniciando servidor en puerto $PORT..."
-php -S 0.0.0.0:$PORT -t public
+# Arranca Nginx en primer plano
+nginx -g "daemon off;"
