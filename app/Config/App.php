@@ -16,7 +16,9 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'https://curso-libro-codeigniter4-production.up.railway.app/';
+    public string $baseURL = 'https://democodeigniter4.desarrollolibre.net/';
+    // public string $baseURL = 'http://codeigniter4.test/';
+    // public string $baseURL = 'https://curso-libro-codeigniter4-production.up.railway.app/';
     // public string $baseURL = 'http://localhost:8080/';
 
     /**
@@ -41,6 +43,7 @@ class App extends BaseConfig
      * something else. If you have configured your web server to remove this file
      * from your site URIs, set this variable to an empty string.
      */
+    // public string $indexPage = '';
     public string $indexPage = 'index.php';
 
     /**
