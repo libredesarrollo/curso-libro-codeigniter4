@@ -1,72 +1,96 @@
-#  Curso y Libro: Primeros Pasos con CodeIgniter 4
+# 🚀 Primeros Pasos con CodeIgniter 4 (Edición Modernizada)
 
-Este repositorio acompaña al libro **"Primeros pasos con CodeIgniter 4"** de Andrés Cruz Yoris (DesarrolloLibre), ideal para quienes desean aprender el framework desde cero y con un enfoque práctico.
+Este repositorio es el acompañamiento oficial del libro y curso **"Primeros pasos con CodeIgniter 4"** de Andrés Cruz Yoris (DesarrolloLibre). Ha sido actualizado y modernizado para aprovechar las últimas características de PHP 8 y las versiones más recientes del framework.
 
-https://www.desarrollolibre.net/blog/codeigniter/curso-codeigniter-4
-
-https://www.desarrollolibre.net/libros/primeros-pasos-codeigniter-4
-https://www.desarrollolibre.net/libros/first-steps-with-codeigniter-4
+[![CodeIgniter Version](https://img.shields.io/badge/CodeIgniter-v4.7.2-blue.svg)](https://codeigniter.com)
+[![PHP Version](https://img.shields.io/badge/PHP-v8.2+-777bb4.svg)](https://www.php.net/)
 
 ---
 
-##  Acerca del Libro
+## 📚 Acerca del Proyecto
 
-Este libro/curso está diseñado para cualquier desarrollador que desee construir sus primeras aplicaciones con CodeIgniter 4 mediante una introducción paso a paso y centrada en la práctica :contentReference[oaicite:0]{index=0}.
+Este proyecto está diseñado para enseñarte a construir aplicaciones robustas con CodeIgniter 4 desde cero. Cubre desde los conceptos básicos de MVC hasta integraciones avanzadas como APIs REST y pagos con PayPal.
 
-
-Está dirigido a personas con conocimientos previos en PHP y tecnologías asociadas como HTML, CSS y JavaScript, y que busquen profundizar en un framework con documentación limitada en español :contentReference[oaicite:2]{index=2}.
-
----
-
-##  Contenido y Estructura del Libro (21 Capítulos)
-
-1. Entorno necesario para desarrollar en CodeIgniter 4 (instalación, configuración).
-2. Primeros pasos con el framework: sitio oficial, formas de instalación, configuración de la base de datos, migraciones, MVC, rutas y CRUD básico :contentReference[oaicite:3]{index=3}.
-3. Práctica: crea otro CRUD.
-4. Rutas: uso, agrupadas, opciones avanzadas.
-5. Sesiones y mensajes flash.
-6. Vistas reutilizables.
-7. Controladores modulares.
-8. Formularios y validaciones del lado del servidor.
-9. Modelos: propiedades, funciones comunes.
-10. Filtros y módulo de autenticación (login/dashboard protegido).
-11. CRUD tipo REST API (JSON/XML).
-12. Seeders para generar datos de prueba.
-13. Relaciones en base de datos: uno a muchos, muchos a muchos.
-14. Carga de archivos (por ejemplo, imágenes).
-15. Librerías y funciones helper.
-16. Adaptación de componentes Bootstrap 5.
-17. Módulo con listado y detalle para usuario final.
-18. Extensión de API REST con paginación, uploads, métodos adicionales.
-19. Aplicación con Vue (en preparación).
-20. Integración con PayPal para pagos.
-21. Uso de CodeIgniter Shield para autenticación/autoriza­ción, gestión de grupos y permisos :contentReference[oaicite:4]{index=4}.
-
-Al finalizar, estarás preparado para construir aplicaciones básicas y entender en profundidad cómo funciona CodeIgniter 4 :contentReference[oaicite:5]{index=5}.
+### ✨ Características Modernizadas
+Recientemente, el proyecto ha sido actualizado con patrones de desarrollo modernos:
+- **Framework v4.7.2**: Uso de las últimas mejoras en seguridad y rendimiento.
+- **PHP 8.2+**: Implementación de tipos de retorno, propiedades tipadas y sintaxis moderna.
+- **Entities**: Uso de clases de Entidad (`App\Entities`) para una manipulación de datos más limpia y lógica.
+- **Modelos Avanzados**: Validación integrada y gestión automática de timestamps.
+- **Controladores Tipados**: Mejora en la legibilidad y mantenimiento mediante el uso de tipos estrictos.
 
 ---
 
-##  Requisitos
+## 🛠️ Requisitos del Sistema
 
-- Conocimientos previos de PHP, HTML, CSS y JavaScript.
-- Entorno compatible con CodeIgniter 4 (PHP ≥ 7.2, idealmente PHP 8+).
-- Composer para la gestión de dependencias.
+Para ejecutar este proyecto de manera óptima, asegúrate de cumplir con:
+- **PHP 8.2** o superior.
+- **Composer** (v2 o superior).
+- Base de Datos compatible (MySQL/MariaDB recomendado).
+- Extensiones PHP: `intl`, `mbstring`, `json`, `curl`, `xml`.
 
 ---
 
-##  Instalación del Proyecto
+## 🚀 Instalación y Configuración
 
-Sigue estos pasos para poner en marcha el proyecto localmente (similar a Laravel):
+Sigue estos pasos para poner el proyecto en marcha en tu entorno local:
 
-```bash
-git clone https://github.com/libredesarrollo/curso-libro-codeigniter4.git
-cd curso-libro-codeigniter4
-composer install
-cp env .env
-# Ajusta las variables de entorno (.env): base de datos, etc.
-php spark key:generate
-php spark migrate
-php spark db:seed
-php spark serve
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/libredesarrollo/curso-libro-codeigniter4.git
+   cd curso-libro-codeigniter4
+   ```
 
-Tambien puedes emplear herramientas como Laragon o Laravel Herd
+2. **Instalar dependencias:**
+   ```bash
+   composer install
+   ```
+
+3. **Configurar el entorno:**
+   Copia el archivo de ejemplo y ajusta tus credenciales de base de datos:
+   ```bash
+   cp env .env
+   ```
+
+4. **Generar clave de cifrado:**
+   ```bash
+   php spark key:generate
+   ```
+
+5. **Ejecutar Migraciones y Seeders:**
+   ```bash
+   php spark migrate
+   php spark db:seed
+   ```
+
+6. **Iniciar el servidor:**
+   ```bash
+   php spark serve
+   ```
+
+---
+
+## 📂 Estructura del Proyecto
+
+- `app/Controllers`: Lógica de la aplicación organizada por módulos (Dashboard, Api, Web).
+- `app/Models`: Definición de acceso a datos con validación y tipos.
+- `app/Entities`: Objetos de datos con lógica de negocio (Modernizado).
+- `app/Config/Routes.php`: Definición de rutas limpias y agrupadas.
+- `public/`: Directorio raíz del servidor web.
+
+---
+
+## 📖 Recursos Adicionales
+
+- **Curso Completo:** [desarrollolibre.net/blog/codeigniter/curso-codeigniter-4](https://www.desarrollolibre.net/blog/codeigniter/curso-codeigniter-4)
+- **Libro en Español:** [Primeros pasos con CodeIgniter 4](https://www.desarrollolibre.net/libros/primeros-pasos-codeigniter-4)
+- **Libro en Inglés:** [First Steps with CodeIgniter 4](https://www.desarrollolibre.net/libros/first-steps-with-codeigniter-4)
+
+---
+
+## 📄 Licencia
+
+Este proyecto es de código abierto bajo la licencia [MIT](LICENSE).
+
+---
+Desarrollado con ❤️ por [Andrés Cruz Yoris](https://www.desarrollolibre.net).

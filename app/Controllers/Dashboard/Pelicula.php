@@ -11,7 +11,7 @@ use App\Models\PeliculaModel;
 class Pelicula extends BaseController
 {
 
-    public function show($id = null)
+    public function show($id = null): string
     {
         $peliculaModel = new PeliculaModel();
 
@@ -21,10 +21,10 @@ class Pelicula extends BaseController
         ];
         //var_dump($imagenModel->getPeliculasById(1));
 
-        echo view("pelicula/show", $data);
+        return view("pelicula/show", $data);
     }
 
-    public function new()
+    public function new(): string
     {
 
         $categoriaModel = new CategoriaModel();
@@ -34,10 +34,10 @@ class Pelicula extends BaseController
             'categorias' => $categoriaModel->asObject()->find()
         ];
 
-        echo view("pelicula/new", $data);
+        return view("pelicula/new", $data);
     }
 
-    public function index()
+    public function index(): string
     {
         // $this->generar_imagen();
         // $this->asignar_imagen();
@@ -53,7 +53,7 @@ class Pelicula extends BaseController
             'pager' => $peliculaModel->pager
         ];
 
-        echo view("pelicula/index", $data);
+        return view("pelicula/index", $data);
     }
 
     public function create()
