@@ -38,6 +38,27 @@ class Validation extends BaseConfig
         'single' => 'CodeIgniter\Validation\Views\single',
     ];
 
+    public $categorias = [
+        'titulo' => 'required|min_length[3]|max_length[255]'
+    ];
+    
+    public $peliculas = [
+        'titulo' => 'required|min_length[3]|max_length[255]',
+        'descripcion' => 'required|min_length[3]|max_length[2000]',
+        'categoria_id' => 'required|is_natural',
+    ];
+    
+    public $etiquetas = [
+        'titulo' => 'required|min_length[3]|max_length[255]',
+        'categoria_id' => 'required|is_natural',
+    ];
+
+    public $usuarios = [
+        'usuario' => 'required|min_length[3]|max_length[20]|is_unique[usuarios.usuario]',
+        'email' => 'required|min_length[3]|max_length[70]|is_unique[usuarios.email]',
+        'contrasena' => 'required|min_length[5]|max_length[15]',
+    ];
+
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------

@@ -1,7 +1,12 @@
-<label for="title">Title</label>
+<div class="mb-3">
+    <label for="title" class="form-label">Título</label>
 
-<input type="input" name="titulo" value="<?= old('titulo', $categoria->titulo) ?>" />
+<input type="input"  class="form-control name="titulo" value="<?= old('titulo', $categoria->titulo) ?>" />
+</div>
 
-<br>
 
-<button type="submit"><?= $op ?></button>
+<div class="mb-3">
+    <label for="submit" class="form-label"></label>
+    <button type="submit" class="btn btn-primary w-100 mt-3"><?= $op ?></button>
+</div>
+

@@ -4,9 +4,8 @@
     <title>Mi módulo de web</title>
 </head>
 <body>
-    <header>
-        <h1>Módulo web</h1>
-    </header>
+
+    <link rel="stylesheet" href="<?= base_url('bootstrap/css/bootstrap.min.css') ?>">
     <?= view("partials/_session") ?>
     <section>
         <?= $this->renderSection('contenido') ?>
