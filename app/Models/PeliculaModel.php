@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Entities\Pelicula;
 
 class PeliculaModel extends Model
 {
     protected $table = 'peliculas';
     protected $primaryKey = 'id';
     protected $allowedFields = ['titulo', 'descripcion', 'categoria_id'];
+    protected $returnType = Pelicula::class;
+    protected $useTimestamps = true;
 
     public function getImagesById($id)
     {

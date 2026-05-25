@@ -11,12 +11,13 @@
     },
     "require": {
         "php": "^8.1",
-        "codeigniter4/framework": "^4.0"
+        "codeigniter4/framework": "^4.6"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9",
+        "codeigniter4/devkit": "^1.1",
+        "fakerphp/faker": "^1.23",
         "mikey179/vfsstream": "^1.6",
-        "phpunit/phpunit": "^10.5.16"
+        "phpunit/phpunit": "^10.5"
     },
     "autoload": {
         "psr-4": {
@@ -35,12 +36,16 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true
+        }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
         "test": "phpunit",
-        "start2": "php spark serve --host 0.0.0.0 --port ${PORT:-8000} --document-root public",
-        "start3": "php -S 0.0.0.0:${PORT} -t public",
-        "start": "bash start.sh"
+        "start": "php spark serve"
     }
 }
