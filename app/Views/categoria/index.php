@@ -5,7 +5,7 @@
 <?= $this->section('contenido') ?>
 <?= view("partials/_form-error"); ?>
 
-
+<div class="container mt-4">
     <h1>Categorías</h1>
     <a href="/dashboard/categoria/new" class="btn btn-primary mb-3">Crear</a>
 
@@ -17,24 +17,20 @@
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($categorias as $key => $c) : ?>
+            <?php foreach ($categorias as $key => $c) : ?>
             <tr>
-
-
+                <td><?= $c->titulo ?></td>
+                <td>
                     <a href="/dashboard/categoria/<?= $c->id ?>" class="btn btn-info btn-sm">Ver</a>
                     <form action="/dashboard/categoria/delete/<?= $c->id ?>" method="POST" style="display: inline-block;">
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta categoría?')">Eliminar</button>
                     </form>
-
-
                     <a href="/dashboard/categoria/edit/<?= $c->id ?>" class="btn btn-warning btn-sm">Editar</a>
                 </td>
             </tr>
-        <?php endforeach ?>
+            <?php endforeach ?>
         </tbody>
     </table>
-
 </div>
 
 <?= $this->endSection() ?>
-

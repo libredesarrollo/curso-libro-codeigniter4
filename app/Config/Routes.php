@@ -30,3 +30,18 @@ $routes->group('paypal', function ($routes) {
     $routes->post('process/(:alphanum)', '\App\Controllers\PayPal\PaymentPaypal::process/$1', ['as' => 'paypal-process']);
     $routes->get('', '\App\Controllers\PayPal\PaymentPaypal::index');
 });
+
+
+// service('auth')->routes($routes);
+
+$routes->group('dashboard', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
+    $routes->get('usuario', 'Usuario::index', ['as' => 'usuario.index']);
+    $routes->get('usuario/(:num)', 'Usuario::show/$1', ['as' => 'usuario.show']);
+    $routes->post('usuario/permisos_manejar/(:num)', 'Usuario::permisos_manejar/$1', ['as' => 'usuario.permisos_manejar']);
+    $routes->post('usuario/grupos_manejar/(:num)', 'Usuario::grupos_manejar/$1', ['as' => 'usuario.grupos_manejar']);
+});
+
+$routes->get('contacto', 'Other::contacto');
+$routes->presenter('regular');
+$routes->presenter('admin');
+$routes->presenter('other');
