@@ -11,7 +11,7 @@ class DashboardFilter implements FilterInterface
         $session = session();
 
         if($session->tipo != "admin"){
-            return redirect()->route('usuario.login');
+            return redirect()->route('login');
         }
     }
 

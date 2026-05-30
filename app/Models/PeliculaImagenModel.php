@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use CodeIgniter\Model;
 
-class PeliculaImagenModel extends Model
+
+class PeliculaImagenModel extends BaseModel
 {
     protected $table = 'pelicula_imagen';
     protected $allowedFields = ['pelicula_id', 'imagen_id'];

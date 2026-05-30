@@ -1,8 +1,8 @@
 <?php namespace App\Models;
 
-use CodeIgniter\Model;
 
-class MovieModel extends Model
+
+class MovieModel extends BaseModel
 {
     protected $table = 'movies';
     protected $primaryKey = 'id';

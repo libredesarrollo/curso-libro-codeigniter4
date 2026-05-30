@@ -11,7 +11,7 @@ class AuthRoleRegularFilter implements FilterInterface
         $session = session();
 
         if($session->type != "regular"){
-            return redirect()->route('user_login_get');
+            return redirect()->route('login');
         }
     }
 

@@ -1,8 +1,8 @@
 <?php namespace App\Models;
 
-use CodeIgniter\Model;
 
-class PaymentModel extends Model
+
+class PaymentModel extends BaseModel
 {
     protected $table = 'payments';
     protected $primaryKey = 'id';

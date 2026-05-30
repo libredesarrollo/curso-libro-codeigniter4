@@ -16,8 +16,8 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    // public string $baseURL = 'https://democodeigniter4.desarrollolibre.net/';
-    public string $baseURL = 'http://codeigniter4.test/';
+    public string $baseURL = 'https://democodeigniter4.desarrollolibre.net/';
+    // public string $baseURL = 'http://codeigniter4.test/';
     // public string $baseURL = 'https://curso-libro-codeigniter4-production.up.railway.app/';
     // public string $baseURL = 'http://localhost:8080/';
 
@@ -203,4 +203,14 @@ class App extends BaseConfig
      * @see http://www.w3.org/TR/CSP/
      */
     public bool $CSPEnabled = false;
+
+    /**
+     * --------------------------------------------------------------------------
+     * Demo Mode
+     * --------------------------------------------------------------------------
+     *
+     * If true, prevents create, edit, and delete operations across the app.
+     */
+    public bool $demoMode = true;
 }
+

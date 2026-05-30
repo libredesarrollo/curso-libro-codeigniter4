@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use CodeIgniter\Model;
+
 use App\Entities\Pelicula;
 
-class PeliculaModel extends Model
+class PeliculaModel extends BaseModel
 {
     protected $table = 'peliculas';
     protected $primaryKey = 'id';

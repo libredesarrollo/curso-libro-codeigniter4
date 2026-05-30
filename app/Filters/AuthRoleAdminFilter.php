@@ -11,7 +11,7 @@ class AuthRoleAdminFilter implements FilterInterface
         $session = session();
 
         if($session->type != "admin"){
-            return redirect()->route('user_login_get');
+            return redirect()->route('login');
         }
     }
 
