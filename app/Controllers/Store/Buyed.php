@@ -70,7 +70,7 @@ class Buyed extends CustomBaseController
 
     public function show_stripe($id = null)
     {
-        \Stripe\Stripe::setApiKey('sk_test_92m8MOLtJC17D59nYPHbMsFO');
+        \Stripe\Stripe::setApiKey('__');
 
         $payment = \Stripe\PaymentIntent::retrieve(
             'pi_1GeQQVEK4SIuNqirqsW30X6D'
