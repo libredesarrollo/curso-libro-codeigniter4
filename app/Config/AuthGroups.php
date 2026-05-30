@@ -49,18 +49,18 @@ class AuthGroups extends ShieldAuthGroups
             'title'       => 'Admin',
             'description' => 'Day to day administrators of the site.',
         ],
-        'developer' => [
-            'title'       => 'Developer',
-            'description' => 'Site programmers.',
-        ],
+        // 'developer' => [
+        //     'title'       => 'Developer',
+        //     'description' => 'Site programmers.',
+        // ],
         'user' => [
             'title'       => 'User',
             'description' => 'General users of the site. Often customers.',
         ],
-        'beta' => [
-            'title'       => 'Beta User',
-            'description' => 'Has access to beta-level features.',
-        ],
+        // 'beta' => [
+        //     'title'       => 'Beta User',
+        //     'description' => 'Has access to beta-level features.',
+        // ],
     ];
 
     /**
@@ -92,26 +92,37 @@ class AuthGroups extends ShieldAuthGroups
     public array $matrix = [
         'superadmin' => [
             'admin.*',
-            'users.*',
-            'beta.*',
+            'users.*'
         ],
         'admin' => [
-            'admin.access',
-            'users.create',
-            'users.edit',
-            'users.delete',
-            'beta.access',
-        ],
-        'developer' => [
-            'admin.access',
-            'admin.settings',
-            'users.create',
-            'users.edit',
-            'beta.access',
+            'admin.*',
+            'users.detail'
         ],
         'user' => [],
-        'beta' => [
-            'beta.access',
-        ],
     ];
+    // public array $matrix = [
+    //     'superadmin' => [
+    //         'admin.*',
+    //         'users.*',
+    //         'beta.*',
+    //     ],
+    //     'admin' => [
+    //         'admin.access',
+    //         'users.create',
+    //         'users.edit',
+    //         'users.delete',
+    //         'beta.access',
+    //     ],
+    //     'developer' => [
+    //         'admin.access',
+    //         'admin.settings',
+    //         'users.create',
+    //         'users.edit',
+    //         'beta.access',
+    //     ],
+    //     'user' => [],
+    //     'beta' => [
+    //         'beta.access',
+    //     ],
+    // ];
 }

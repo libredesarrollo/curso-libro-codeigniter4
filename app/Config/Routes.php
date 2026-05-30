@@ -7,16 +7,13 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->group('dashboard', ['namespace' => '\App\Controllers\Dashboard'], function ($routes) {
-    $routes->presenter('pelicula');
-    $routes->presenter('categoria');
-}); //3UH25970119751840
+
 
 $routes->get('pelicula/new', 'Pelicula::new', ['as' => 'pelicula.new']);
 
-$routes->get('login', '\App\Controllers\Web\Usuario::login', ['as' => 'usuario.login']);
+$routes->get('login-manual', '\App\Controllers\Web\Usuario::login', ['as' => 'usuario.login']);
 $routes->post('login', '\App\Controllers\Web\Usuario::login_post', ['as' => 'usuario.login.post']);
-$routes->get('registrar', '\App\Controllers\Web\Usuario::registrar', ['as' => 'usuario.registrar']);
+$routes->get('registrar-manual', '\App\Controllers\Web\Usuario::registrar', ['as' => 'usuario.registrar']);
 $routes->post('registrar', '\App\Controllers\Web\Usuario::registrar_post', ['as' => 'usuario.registrar.post']);
 
 $routes->get('logout', '\App\Controllers\Web\Usuario::logout', ['as' => 'usuario.logout']);
@@ -32,10 +29,16 @@ $routes->group('paypal', function ($routes) {
 });
 
 
-// service('auth')->routes($routes);
+// shield
+service('auth')->routes($routes);
+
+$routes->group('dashboard', ['namespace' => '\App\Controllers\Dashboard'], function ($routes) {
+    $routes->presenter('pelicula');
+    $routes->presenter('categoria');
+}); //3UH25970119751840
 
 $routes->group('dashboard', ['namespace' => 'App\Controllers\Dashboard'], function ($routes) {
-    $routes->get('usuario', 'Usuario::index', ['as' => 'usuario.index']);
+    $routes->get('usuario', 'Usuario::index', ['as' => 'usuario.index', 'filter' => 'session']);
     $routes->get('usuario/(:num)', 'Usuario::show/$1', ['as' => 'usuario.show']);
     $routes->post('usuario/permisos_manejar/(:num)', 'Usuario::permisos_manejar/$1', ['as' => 'usuario.permisos_manejar']);
     $routes->post('usuario/grupos_manejar/(:num)', 'Usuario::grupos_manejar/$1', ['as' => 'usuario.grupos_manejar']);
