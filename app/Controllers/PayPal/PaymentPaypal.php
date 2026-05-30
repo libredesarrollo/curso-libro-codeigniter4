@@ -10,10 +10,8 @@ class PaymentPaypal extends BaseController
     //private $baseURL = 'https://api-m.paypal.com';
     private $baseURL = 'https://api-m.sandbox.paypal.com';
 
-    private $clientId = "AUu2CpCBrva4gbNjqB5IvdV16V93hPLgumgyL7iJgQPs64Rdrp35EepAGDE8GtDlZIwg7i44FrGDY8Eq";
-    private $secret = "EDuiWwKXnXOBtCyjYFmFiriQjvroIA8kiRdsC2iNnCqAwKwxLi_-hOsZDQlZo7YPsrHDkZCK4-Lnn0iI";
-    // private $clientId = "ARYwUX89lCet9zZRP5U-px8Btet5wVYIuTv8LVLOSNwMdg3ofVn9uE4vTFTiXw0Cxti0jrRNS6eYQAV0";
-    // private $secret = "EFZUcwzBNOcDP7XUeUNaR4yR7fA_pPM1K6s02LP8TogupuLGnU49c87lZNEc93fV45Hax7LdqTRN-LA0";
+    private $clientId = "__";
+    private $secret = "__";
 
     // public function __construct()
     // {
