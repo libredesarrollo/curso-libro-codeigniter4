@@ -33,6 +33,7 @@
                 <a href="/dashboard/pelicula" class="btn btn-info">Dashboard (Películas)</a>
                 <a href="/dashboard/tag" class="btn btn-info">Proyecto Inventario</a>
                 <a href="/categoryautocrud" class="btn btn-info">AutoCRUD</a>
+                <a href="/vue" class="btn btn-info">App Vue CRUD demo consumo API Rest</a>
                 <a href="<?= route_to('usuario.index') ?>" class="btn btn-info">Dashboard (Usuarios, Roles y Permisos)</a>
             </li>
             <li class="list-group-item mt-2">

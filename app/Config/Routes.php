@@ -21,6 +21,7 @@ $routes->get('logout', '\App\Controllers\Web\Usuario::logout', ['as' => 'usuario
 // API REST
 $routes->group('api', ['namespace' => '\App\Controllers\Api'], function ($routes) {
     $routes->resource('pelicula');
+    $routes->resource('categoria');
 });
 
 $routes->group('paypal', function ($routes) {
