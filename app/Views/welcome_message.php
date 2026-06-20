@@ -18,7 +18,7 @@
                 <a href="/register" class="btn btn-secondary">Registrarse</a>
             </div>
             <ul>
-                <li>User: <strong>admin</strong></li>
+                <li>User: <strong>admin@admin.com</strong></li>
                 <li>Password: <strong>YPH4Rzt8MwKq95z</strong>
                 
             </ul>
